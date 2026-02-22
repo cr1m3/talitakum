@@ -3,33 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yayasan Talitakum Generasi Terang</title>
+    <title>Portal Yayasan Talitakum Generasi Terang</title>
     <style>
-        /* Pengaturan Desain (CSS) */
+        /* Pengaturan Dasar */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             color: #333;
             line-height: 1.6;
-            background-color: #f9f9f9;
+            background-color: #f4f7f6;
         }
-        header {
-            background-color: #004080; /* Warna biru elegan dan profesional */
-            color: white;
-            text-align: center;
-            padding: 4rem 1rem;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.8rem;
-            letter-spacing: 1px;
-        }
-        header p {
-            font-size: 1.2rem;
-            margin-top: 10px;
-            font-weight: 300;
-        }
+
+        /* Navigasi */
         nav {
             background: #00264d;
             color: white;
@@ -37,6 +23,8 @@
             text-align: center;
             position: sticky;
             top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
         nav a {
             color: white;
@@ -45,109 +33,200 @@
             font-weight: bold;
             font-size: 1.1rem;
         }
-        nav a:hover {
-            text-decoration: underline;
-            color: #ffcc00;
+        nav a:hover { color: #ffcc00; }
+
+        /* Slider Foto */
+        .slider-container {
+            position: relative;
+            max-width: 100%;
+            height: 400px;
+            overflow: hidden;
+            background-color: #ddd;
         }
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(70%); /* Menggelapkan foto agar teks terbaca */
+        }
+        .slide-text {
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            text-align: center;
+            width: 80%;
+        }
+        .slide-text h2 {
+            font-size: 2.5rem;
+            margin: 0 0 10px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+        }
+        
+        /* Tombol Navigasi Slider */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .next { right: 0; border-radius: 3px 0 0 3px; }
+        .prev:hover, .next:hover { background-color: rgba(0,0,0,0.8); }
+
+        /* Container Konten */
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 2rem auto;
-            padding: 2rem;
+            padding: 0 1rem;
+        }
+
+        /* Grid Layanan / Unit */
+        .layanan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 2rem;
+        }
+        .card {
             background: white;
+            padding: 20px;
+            border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border-top: 5px solid #004080;
         }
-        .section {
-            margin-bottom: 2.5rem;
+        .card:hover { transform: translateY(-5px); }
+        .card h3 { color: #004080; margin-top: 0; }
+        .card p { font-size: 0.95rem; color: #555; }
+        .btn-unit {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 15px;
+            background-color: #ffcc00;
+            color: #00264d;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
         }
-        h2 {
-            color: #004080;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
+        .btn-unit:hover { background-color: #e6b800; }
+
+        /* Kontak & Footer */
+        .kontak-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-top: 3rem;
         }
-        ul {
-            padding-left: 20px;
+        .wa-button {
+            display: inline-block;
+            background-color: #25D366;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 10px;
         }
+        .wa-button:hover { background-color: #128C7E; }
         footer {
             background-color: #333;
             color: white;
             text-align: center;
             padding: 1.5rem;
-            margin-top: 2rem;
-        }
-        /* Tombol WhatsApp */
-        .wa-button {
-            display: inline-block;
-            background-color: #25D366;
-            color: white;
-            padding: 8px 16px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            margin-top: 8px;
-            font-size: 0.95rem;
-        }
-        .wa-button:hover {
-            background-color: #128C7E;
-        }
-        /* Link Email */
-        .email-link {
-            color: #004080;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .email-link:hover {
-            text-decoration: underline;
+            margin-top: 3rem;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Yayasan Talitakum Generasi Terang</h1>
-        <p>Membawa Terang, Harapan, dan Perubahan Nyata bagi Generasi Masa Depan</p>
-    </header>
-
     <nav>
-        <a href="#tentang">Tentang Kami</a>
-        <a href="#visi-misi">Visi & Misi</a>
-        <a href="#program">Program</a>
+        <a href="#">Beranda</a>
+        <a href="#unit">Unit Kami</a>
         <a href="#kontak">Kontak</a>
     </nav>
 
+    <div class="slider-container">
+        <div class="slide">
+            <img src="1.jpeg" alt="Yayasan">
+            <div class="slide-text">
+                <h2>Yayasan Sosial & Kemanusiaan</h2>
+                <p>Membawa terang dan perubahan nyata bagi masyarakat sekitar.</p>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="2.jpeg" alt="Pendidikan Anak">
+            <div class="slide-text">
+                <h2>Pendidikan KB & PAUD</h2>
+                <p>Membangun fondasi karakter dan kecerdasan anak sejak usia dini.</p>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="3.jpeg" alt="Pawai Indah">
+            <div class="slide-text">
+                <h2>Pawai Indah</h2>
+                <p>Lingkungan yang aman, nyaman, dan penuh kasih sayang untuk buah hati Anda.</p>
+            </div>
+        </div>
+
+        <a class="prev" onclick="ubahSlide(-1)">&#10094;</a>
+        <a class="next" onclick="ubahSlide(1)">&#10095;</a>
+    </div>
+
     <div class="container">
-        <div id="tentang" class="section">
-            <h2>Tentang Kami</h2>
-            <p>Selamat datang di website resmi <strong>Yayasan Talitakum Generasi Terang</strong>. Kami adalah organisasi nirlaba yang berdedikasi untuk memberikan dampak positif, membangkitkan potensi, dan membangun generasi yang lebih baik melalui berbagai program sosial, pendidikan, dan kemanusiaan.</p>
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <h1 style="color: #004080;">Selamat Datang di Yayasan Talitakum Generasi Terang</h1>
+            <p>Kami berdedikasi untuk memberikan layanan terbaik di bidang sosial, pendidikan anak usia dini, dan pengasuhan anak.</p>
         </div>
 
-        <div id="visi-misi" class="section">
-            <h2>Visi & Misi</h2>
-            <p><strong>Visi:</strong></p>
-            <p>Menjadi pelita yang menerangi jalan, membangkitkan generasi yang unggul, mandiri, dan berkarakter, serta menjadi saluran berkat bagi sesama.</p>
-            <p><strong>Misi:</strong></p>
-            <ul>
-                <li>Menyelenggarakan program pendidikan dan pelatihan untuk pemberdayaan masyarakat, khususnya generasi muda.</li>
-                <li>Memberikan bantuan sosial dan kemanusiaan yang tepat sasaran.</li>
-                <li>Membangun kolaborasi dengan berbagai pihak untuk mewujudkan kesejahteraan bersama.</li>
+        <div id="unit" class="layanan-grid">
+            <div class="card">
+                <h3>Yayasan Sosial</h3>
+                <p>Program pemberdayaan masyarakat dan bantuan kemanusiaan untuk masa depan yang lebih baik.</p>
+                <a href="#" class="btn-unit">Info Yayasan</a> 
+            </div>
+            <div class="card">
+                <h3>Kelompok Bermain (KB)</h3>
+                <p>Membantu anak-anak bersosialisasi dan belajar melalui metode bermain yang menyenangkan.</p>
+                <a href="#" class="btn-unit">Info KB</a>
+            </div>
+            <div class="card">
+                <h3>PAUD</h3>
+                <p>Pendidikan Anak Usia Dini yang berfokus pada pembentukan karakter dan kemandirian.</p>
+                <a href="#" class="btn-unit">Info PAUD</a>
+            </div>
+            <div class="card">
+                <h3>Penitipan Anak (TPA)</h3>
+                <p>Fasilitas penitipan anak yang aman dengan tenaga pengasuh profesional dan peduli.</p>
+                <a href="#" class="btn-unit">Info TPA</a>
+            </div>
+        </div>
+
+        <div id="kontak" class="kontak-box">
+            <h2 style="color: #004080; border-bottom: 2px solid #eee; padding-bottom: 10px;">Hubungi Kami</h2>
+            <p>Pendaftaran, donasi, atau informasi lebih lanjut, silakan hubungi sekretariat kami:</p>
+            <ul style="list-style-type: none; padding: 0; line-height: 2;">
+                <li>📧 <strong>Email:</strong> <a href="mailto:yayasantalitakumgenerasiterang@gmail.com" style="color: #004080; font-weight: bold;">yayasantalitakumgenerasiterang@gmail.com</a></li>
+                <li>📍 <strong>Alamat:</strong> Jalan Purwosari Gang HK, Desa Pandau Jaya, Kecamatan Siak Hulu, Kabupaten Kampar, Riau 28452</li>
+                <li>📞 <strong>Telepon/WhatsApp:</strong> +62 852-6492-2015</li>
             </ul>
-        </div>
-
-        <div id="program" class="section">
-            <h2>Program Kami</h2>
-            <p>Saat ini, yayasan berfokus pada kegiatan pemberdayaan dan bantuan sosial. Kami terus berupaya memperluas jangkauan agar lebih banyak kehidupan yang tersentuh oleh program-program kami. <em>(Detail program spesifik, foto kegiatan, atau donasi dapat ditambahkan di sini nantinya)</em>.</p>
-        </div>
-
-        <div id="kontak" class="section">
-            <h2>Hubungi Kami</h2>
-            <p>Kami sangat terbuka untuk diskusi, dukungan, dan kerja sama.</p>
-            <ul>
-                <li><strong>Email:</strong> <a href="mailto:yayasantalitakumgenerasiterang@gmail.com" class="email-link">yayasantalitakumgenerasiterang@gmail.com</a></li>
-                <li><strong>Alamat Sekretariat:</strong> Jalan Purwosari Gang HK, Desa Pandau Jaya, Kecamatan Siak Hulu, Kabupaten Kampar, Riau 28452</li>
-                <li><strong>Telepon/WhatsApp:</strong> +62 852-6492-2015 <br>
-                    <a href="https://wa.me/6285264922015" class="wa-button" target="_blank">Chat via WhatsApp</a>
-                </li>
-            </ul>
+            <a href="https://wa.me/6285264922015" class="wa-button" target="_blank">💬 Chat via WhatsApp</a>
         </div>
     </div>
 
@@ -155,5 +234,29 @@
         <p>&copy; 2026 Yayasan Talitakum Generasi Terang. Semua Hak Cipta Dilindungi.</p>
     </footer>
 
+    <script>
+        let slideIndex = 1;
+        tampilkanSlide(slideIndex);
+
+        // Fungsi agar slide berganti otomatis tiap 5 detik
+        setInterval(function() {
+            ubahSlide(1);
+        }, 5000);
+
+        function ubahSlide(n) {
+            tampilkanSlide(slideIndex += n);
+        }
+
+        function tampilkanSlide(n) {
+            let i;
+            let slides = document.getElementsByClassName("slide");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex-1].style.display = "block";
+        }
+    </script>
 </body>
 </html>
